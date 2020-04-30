@@ -24,3 +24,11 @@ class ProductPage(BasePage):
         message_basket_total = self.browser.find_element(*ProductPageLocators.MESSAGE_BASKET_TOTAL).text
         product_price = self.browser.find_element(*ProductPageLocators.PRODUCT_PRICE).text
         assert product_price in message_basket_total, "нет цены продукта в сообщении с ценой в корзине"
+
+    def should_be_is_not_message_about_adding(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_ABOUT_ADDING),\
+            "сообщения о добавлении товара на странице есть"
+
+    def should_be_is_disappeared_message_about_adding(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_ABOUT_ADDING),\
+            "сообщения о добавлении товара на странице появилось"
